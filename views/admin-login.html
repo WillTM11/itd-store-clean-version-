@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .admin-wrap{max-width:420px;margin:60px auto;padding:24px;border:1px solid #eee;border-radius:14px}
+    .admin-wrap h1{margin:0 0 14px}
+    .admin-wrap input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px}
+    .admin-wrap button{margin-top:12px;width:100%;padding:12px;border:0;border-radius:10px;cursor:pointer}
+    .err{color:#b00020;margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="admin-wrap">
+    <h1>Admin Login</h1>
+    <form method="POST" action="/admin/login">
+      <label>Password</label><br/><br/>
+      <input name="password" type="password" placeholder="Enter admin password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div id="err" class="err" style="display:none;">Wrong password.</div>
+  </div>
+
+  <script>
+    const p = new URLSearchParams(location.search);
+    if (p.get('error') === '1') document.getElementById('err').style.display = 'block';
+  </script>
+</body>
+</html>

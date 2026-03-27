@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout • ITD Clothing</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="/js/checkout.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="/">
+        <img src="/images/itd-logo.png" alt="ITD Clothing logo" class="brand__logo" />
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="/shop" class="nav__link">Shop</a>
+        <a href="/cart" class="nav__link">Cart</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="/cart" class="icon-btn" aria-label="Cart">🛒</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page">
+    <div class="page__head">
+      <h1 class="page__title">Checkout</h1>
+      <p class="page__sub">Enter delivery details and place your order.</p>
+    </div>
+
+    <div class="checkout-grid">
+      <!-- Form -->
+      <form class="panel" action="/checkout" method="POST">
+        <h3 class="panel__title">Delivery</h3>
+
+        <div class="form-grid">
+          <div>
+            <label class="label" for="fullName">Full name</label>
+            <input class="input" id="fullName" name="fullName" required />
+          </div>
+
+          <div>
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" required />
+          </div>
+
+          <div>
+            <label class="label" for="phone">Phone</label>
+            <input class="input" id="phone" name="phone" />
+          </div>
+
+          <div>
+            <label class="label" for="postcode">Postcode</label>
+            <input class="input" id="postcode" name="postcode" required />
+          </div>
+
+          <div class="full">
+            <label class="label" for="address1">Address line 1</label>
+            <input class="input" id="address1" name="address1" required />
+          </div>
+
+          <div class="full">
+            <label class="label" for="address2">Address line 2 (optional)</label>
+            <input class="input" id="address2" name="address2" />
+          </div>
+
+          <div>
+            <label class="label" for="city">City</label>
+            <input class="input" id="city" name="city" required />
+          </div>
+
+          <div>
+            <label class="label" for="notes">Delivery notes (optional)</label>
+            <input class="input" id="notes" name="notes" />
+          </div>
+        </div>
+
+        <button class="btn btn--primary btn--full" type="submit">
+          Place Order (no payment yet)
+        </button>
+
+        <p class="muted small" style="margin-top:10px;">
+          Next step: Stripe payment. For now, this will save an order and clear your cart.
+        </p>
+      </form>
+
+      <!-- Summary -->
+      <aside class="panel" id="summaryPanel">
+        <h3 class="panel__title">Order Summary</h3>
+        <div id="summaryRoot" class="muted">Loading…</div>
+      </aside>
+    </div>
+  </main>
+
+</body>
+</html>

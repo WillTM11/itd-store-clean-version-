@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .wrap{max-width:1100px;margin:30px auto;padding:0 16px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+    select{padding:10px;border:1px solid #ddd;border-radius:10px}
+    table{width:100%;border-collapse:collapse;margin-top:16px}
+    th,td{padding:12px;border-bottom:1px solid #eee;text-align:left}
+    tr:hover{background:#fafafa;cursor:pointer}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #ddd;font-size:12px}
+    .panel{margin-top:18px;padding:14px;border:1px solid #eee;border-radius:14px;display:none}
+    .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .muted{opacity:.7}
+    .btn{padding:10px 12px;border:1px solid #ddd;border-radius:10px;background:#fff;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">Admin Dashboard</h1>
+        <div class="muted">Orders</div>
+      </div>
+
+      <form method="POST" action="/admin/logout">
+        <button class="btn" type="submit">Logout</button>
+      </form>
+    </div>
+
+    <div class="controls">
+      <label>Status:</label>
+      <select id="statusFilter">
+        <option value="">All</option>
+        <option value="pending">pending</option>
+        <option value="paid">paid</option>
+        <option value="processing">processing</option>
+        <option value="shipped">shipped</option>
+        <option value="cancelled">cancelled</option>
+        <option value="abandoned">abandoned</option>
+        <option value="payment_failed">payment_failed</option>
+      </select>
+
+      <button class="btn" id="refreshBtn" type="button">Refresh</button>
+    </div>
+
+    <table id="ordersTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="detail" class="panel"></div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

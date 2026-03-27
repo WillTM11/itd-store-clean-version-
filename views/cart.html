@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart • ITD Clothing</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="/js/cart.js"></script>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="/">
+        <img src="/images/itd-logo.png" alt="ITD Clothing logo" class="brand__logo" />
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="/shop" class="nav__link">Shop</a>
+        <a href="/cart" class="nav__link">Cart</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="/cart" class="icon-btn" aria-label="Cart">🛒</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container page">
+    <div class="page__head">
+      <h1 class="page__title">Your Bag</h1>
+      <p class="page__sub">Review your items before checkout.</p>
+    </div>
+
+    <div id="cartRoot" class="cart">
+      <p class="muted">Loading cart…</p>
+    </div>
+  </main>
+
+</body>
+</html>

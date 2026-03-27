@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop • ITD Clothing</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/shop.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+  <div class="container header__inner">
+
+    <!-- Logo (acts as Home button) -->
+    <a class="brand" href="/">
+      <img src="/images/itd-logo.png" alt="ITD Clothing logo" class="brand__logo" />
+    </a>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+      <a href="/" class="nav__link">Home</a>
+      <a href="/shop" class="nav__link">Shop</a>
+      <a href="/cart" class="nav__link">Cart</a>
+    </nav>
+
+  </div>
+</header>
+
+  <!-- Shop Header -->
+  <main class="container page">
+    <div class="page__head">
+      <h1 class="page__title">Shop</h1>
+      <p class="page__sub">New drops, essentials, and limited runs.</p>
+    </div>
+
+    <!-- Filters (UI only for now) -->
+    <div class="filters">
+      <button class="pill">All</button>
+      <button class="pill">Hoodies</button>
+      <button class="pill">T-Shirts</button>
+      <button class="pill">Tracksuits</button>
+
+      <select class="select" aria-label="Sort">
+        <option>Sort: Featured</option>
+        <option>Price: Low to High</option>
+        <option>Price: High to Low</option>
+        <option>Newest</option>
+      </select>
+    </div>
+
+    <!-- Product Grid (rendered by shop.js) -->
+    <section class="product-grid" id="productsGrid">
+      <!-- shop.js will inject product cards here -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <img src="/images/itd-logo.png" alt="ITD Clothing logo" class="footer__logo"/>
+        <p class="muted">Local clothing, built with quality.</p>
+      </div>
+
+      <div class="footer__cols">
+        <div>
+          <h4>Shop</h4>
+          <a href="/shop">All</a>
+          <a href="#">Men (Coming Soon!)</a>
+          <a href="#">Women (Coming Soon!)</a>
+          <a href="#">Sale (Coming Soon!)</a>
+        </div>
+        <div>
+          <h4>Help (Coming Soon!)</h4>
+          <a href="#">Contact</a>
+          <a href="#">Delivery</a>
+          <a href="#">Returns</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

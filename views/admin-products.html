@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Products</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .wrap{max-width:1100px;margin:30px auto;padding:0 16px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .muted{opacity:.7}
+    .btn{padding:10px 12px;border:1px solid #ddd;border-radius:10px;background:#fff;cursor:pointer}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .card{border:1px solid #eee;border-radius:14px;padding:14px}
+    label{display:block;font-size:13px;margin-top:10px}
+    input, textarea, select{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:12px;border-bottom:1px solid #eee;text-align:left}
+    tr:hover{background:#fafafa;cursor:pointer}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #ddd;font-size:12px}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .danger{border-color:#f3b6b6}
+    .actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .preview-grid{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .preview-box{border:1px solid #eee;border-radius:12px;padding:10px;text-align:center}
+    .preview-box img{width:100%;height:90px;object-fit:cover;border-radius:10px;border:1px solid #eee;background:#fafafa}
+    .preview-box p{margin:8px 0 0;font-size:12px;opacity:.7}
+    .bundle-box{margin-top:14px;padding:12px;border:1px solid #eee;border-radius:12px;background:#fafafa}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1 style="margin:0;">Admin Products</h1>
+        <div class="muted">Add / edit / deactivate products</div>
+      </div>
+      <div class="row">
+        <a class="btn" href="/admin">Orders</a>
+        <form method="POST" action="/admin/logout" style="margin:0;">
+          <button class="btn" type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2 style="margin:0 0 10px;">Products</h2>
+
+        <div class="row">
+          <label style="margin:0;">Show:</label>
+          <select id="filterActive" style="max-width:220px;">
+            <option value="all">All</option>
+            <option value="active">Active only</option>
+            <option value="inactive">Inactive only</option>
+          </select>
+          <button class="btn" id="refreshBtn" type="button">Refresh</button>
+        </div>
+
+        <table id="productsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="muted" style="margin-top:10px;">
+          Click a row to edit. “Delete” = deactivate.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 style="margin:0 0 10px;">Product Editor</h2>
+
+        <form id="productForm">
+          <input type="hidden" id="prodId" value="" />
+
+          <label>Name</label>
+          <input id="name" required />
+
+          <label>Description</label>
+          <textarea id="description" rows="4"></textarea>
+
+          <label>Product Type</label>
+          <select id="productType">
+            <option value="single">Single Product</option>
+            <option value="set">Set / Bundle</option>
+          </select>
+
+          <label>Price (GBP)</label>
+          <input id="price" type="number" step="0.01" min="0" required />
+
+          <label>Stock</label>
+          <input id="stock" type="number" min="0" step="1" value="0" />
+
+          <div id="bundleFields" class="bundle-box" style="display:none;">
+            <strong>Bundle Items</strong>
+            <p class="muted" style="margin:6px 0 0;">Choose up to 3 products included in this set.</p>
+
+            <label>Bundle Item 1</label>
+            <select id="bundleItem1">
+              <option value="">Select product</option>
+            </select>
+
+            <label>Bundle Item 2</label>
+            <select id="bundleItem2">
+              <option value="">Select product</option>
+            </select>
+
+            <label>Bundle Item 3</label>
+            <select id="bundleItem3">
+              <option value="">Select product</option>
+            </select>
+          </div>
+
+          <label>Main Image</label>
+          <input id="image" placeholder="/uploads/..." />
+
+          <label>Upload To</label>
+          <select id="uploadTarget">
+            <option value="image">Main Image</option>
+            <option value="image2">Image 2</option>
+            <option value="image3">Image 3</option>
+            <option value="image4">Image 4</option>
+          </select>
+
+          <div class="row" style="margin-top:10px;">
+            <input id="imageFile" type="file" accept="image/*" />
+            <button class="btn" id="uploadBtn" type="button">Upload</button>
+          </div>
+
+          <label>Image 2</label>
+          <input id="image2" placeholder="/uploads/..." />
+
+          <label>Image 3</label>
+          <input id="image3" placeholder="/uploads/..." />
+
+          <label>Image 4</label>
+          <input id="image4" placeholder="/uploads/..." />
+
+          <label>Active</label>
+          <select id="active">
+            <option value="1">Active</option>
+            <option value="0">Inactive</option>
+          </select>
+
+          <div class="preview-grid">
+            <div class="preview-box">
+              <img id="imgPreview" src="/images/placeholder.jpg" alt="Preview 1" />
+              <p>Main Image</p>
+            </div>
+            <div class="preview-box">
+              <img id="imgPreview2" src="/images/placeholder.jpg" alt="Preview 2" />
+              <p>Image 2</p>
+            </div>
+            <div class="preview-box">
+              <img id="imgPreview3" src="/images/placeholder.jpg" alt="Preview 3" />
+              <p>Image 3</p>
+            </div>
+            <div class="preview-box">
+              <img id="imgPreview4" src="/images/placeholder.jpg" alt="Preview 4" />
+              <p>Image 4</p>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="newBtn" type="button">New</button>
+            <button class="btn" id="saveBtn" type="submit">Save</button>
+            <button class="btn danger" id="deleteBtn" type="button">Delete (Deactivate)</button>
+          </div>
+
+          <div class="muted" id="msg" style="margin-top:10px;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/admin-products.js"></script>
+</body>
+</html>
