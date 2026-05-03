@@ -76,7 +76,7 @@ This project was built to simulate a real-world e-commerce system and demonstrat
 
 ---
 
-## Screenshots (optional)
+## Screenshots
 
 <img width="1916" height="963" alt="image" src="https://github.com/user-attachments/assets/6fd4a496-244b-4302-9e46-5be367a119de" />
 
